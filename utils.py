@@ -1,28 +1,6 @@
-import matplotlib.pyplot as plt
 import os
 import numpy as np
 import torch
-import matplotlib
-matplotlib.use('Agg')
-
-def draw_plt(train_data,valid_data,tt,cv_num,path):
-    plt.figure(figsize=(10, 6), dpi=144)
-    plt.grid(linestyle='--') 
-    plt.xlabel('epoch')
-    if tt=='auc':
-        plt.ylabel('auc')
-        plt.plot(valid_data, color='orange', label='valid_auc')#测试集
-        plt.plot(train_data, color='midnightblue', label='train_auc')#训练集
-        plt.legend()
-        plt.savefig(os.path.join(path,'auc_'+str(cv_num)+'.png'))
-        plt.close('all')
-    else:
-        plt.ylabel('loss')
-        plt.plot(valid_data, color='orange', label='valid_loss')#测试集
-        plt.plot(train_data, color='midnightblue', label='train_loss')#训练集
-        plt.legend()
-        plt.savefig(os.path.join(path,'loss_'+str(cv_num)+'.png'))
-        plt.close('all')
 
 
 def save_info_0(dataset,
@@ -75,7 +53,7 @@ def save_info_1(cv,epoch,max_auc,valid_auc,valid_loss,valid_mse,valid_mae,valid_
         'valid_loss:%-8.4f' % valid_loss,
         'valid_mse:%-8.4f' % valid_mse,
         'valid_mae:%-8.4f' % valid_mae,
-        'valid_acc:%-8.8f' % valid_acc,
+        'valid_acc:%-8.8f\n' % valid_acc,
         'train_auc:%-8.4f' % train_auc,
         'train_loss:%-8.4f' % train_loss,
         'train_mse:%-8.4f' % train_mse,
@@ -91,7 +69,7 @@ def save_info_1(cv,epoch,max_auc,valid_auc,valid_loss,valid_mse,valid_mae,valid_
         'valid_loss:%f' % valid_loss,
         'valid_mse:%f' % valid_mse,
         'valid_mae:%f' % valid_mae,
-        'valid_acc:%f' % valid_acc,
+        'valid_acc:%f\n' % valid_acc,
         'train_auc:%f' % train_auc,
         'train_loss:%f' % train_loss,
         'train_mse:%f' % train_mse,
@@ -150,12 +128,12 @@ def save_info_4(cv,valid_auc, test_auc, test_mse, test_mae,test_acc,test_loss,in
 
 def save_info_3(average_train_auc, average_test_auc,average_test_mse, average_test_mae, average_test_acc,average_test_loss,info_file):
     print_result = (
-    'average_valid_auc:%-8.4f' % average_train_auc,
-    'average_test_auc:%-8.4f' % average_test_auc,
-    'average_test_acc:%-8.8f' % average_test_acc,
-    'average_test_mse:%-8.4f' % average_test_mse,
-    'average_test_mae:%-8.4f' % average_test_mae,
-    'average_test_loss:%-8.4f' % average_test_loss
+    'valid_auc:%-8.4f' % average_train_auc,
+    'test_auc:%-8.4f' % average_test_auc,
+    'test_acc:%-8.8f' % average_test_acc,
+    'test_mse:%-8.4f' % average_test_mse,
+    'mae:%-8.4f' % average_test_mae,
+    'test_loss:%-8.4f' % average_test_loss
     )
     print('%s %s %s %s %s %s\n' % print_result)
     info_file.write('%s %s %s %s %s %s\n' % print_result)
