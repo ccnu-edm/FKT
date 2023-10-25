@@ -5,6 +5,8 @@ The code is related to the paper [Response Speed Enhanced Fine-grained Knowledge
 
 The FKT model consists of three modules: a time cell encoder, a time sequence decoder, and a response predictor. Specifically, when predicting a learner’s future performance, (1) the time cell encoder encodes the historical learning trajectory to obtain the historical knowledge state of the corresponding time cell; (2) the time sequence decoder simulates the retrieval process of the historical knowledge state when answering future exercises through time-distance attention and obtains the latent trait to answer in the future through knowledge proficiency; and (3) the response predictor obtains the response speed and response answers with a multi-task objective function, promoting fine-grained knowledge tracing.
 
+![](Model.png)
+
 # Requirements
 
 - pytroch
